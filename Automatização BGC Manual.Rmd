@@ -1,0 +1,48 @@
+---
+title: "Automatização BGC Manual"
+author: "Roni S. Band"
+date: "1/4/2019"
+output: html_document
+---
+
+```{r}
+setwd("/Users/rband/Box Sync/Revisão Ajustado")
+#install.packages("wdman")
+#install.packages("RSelenium")
+library(RSelenium)
+library(XML)
+library(magrittr)
+library(wdman)
+library(audio)
+#install.packages("audio")
+#install.packages("devtools")
+#devtools::install_github("ropensci/RSelenium")
+#rD<-rsDriver(port = 4567L)
+#remDr<-rD[["client"]]
+#pDrv<-phantomjs(port = 4444L, extras = "--ignore-ssl-errors=true --ssl-protocol=tlsv1")
+selServ <- wdman::selenium(verbose = FALSE)
+pDrv<-wdman::chrome(port = 4568L)
+remDr<-remoteDriver(browserName = "chrome", port = 4568L)
+remDr$open()
+#if monitor laptop
+remDr$setWindowSize(width = 1200,height = 650)
+#if monitor grande
+#remDr$setWindowSize(width = 1400,height = 900)
+
+```
+
+
+```{r}
+remDr$navigate("https://transformer.uberinternal.com/")
+remDr$findElement(using = "xpath","//*[@id='toolshed-content']/div/div/div[2]/div[2]/div[2]/ul/li[2]/button")$clickElement()
+remDr$findElement(using = "xpath","//*[@id='toolshed-content']/div/div/div[2]/div[3]/div/div[2]/select")$clickElement()
+remDr$findElement(using = "xpath","//*[@id='toolshed-content']/div/div/div[2]/div[3]/div/div[2]/select/option[6]")$clickElement()
+remDr$findElement(using = "xpath","//*[@id='toolshed-content']/div/div/div[2]/div[4]/div[5]/div[2]/div[2]/select")$clickElement()
+remDr$findElement(using = "xpath","//*[@id='toolshed-content']/div/div/div[2]/div[4]/div[5]/div[2]/div[2]/select/option[9]")$clickElement()
+remDr$findElement(using = "xpath","//*[@id='toolshed-content']/div/div/div[2]/div[2]/div[4]/div/div[3]/button/span")$clickElement()
+remDr$findElement(using = "xpath","//*[@id='toolshed-content']/div/div/div[2]/div[4]/div[5]/div[2]/div[2]/select")$clickElement()
+remDr$findElement(using = "xpath","//*[@id='toolshed-content']/div/div/div[2]/div[4]/div[5]/div[2]/div[2]/select")$clickElement()
+
+
+
+```
